@@ -28,6 +28,8 @@ function copy_sub(prop, subtext)
     if subtext and subtext ~= '' then
         if _G.platform == 'macos' then
             os.execute("export LANG=en_US.UTF-8; echo '" .. escape(subtext) .. "' | pbcopy")
+        elseif _G.platform == 'linux' then
+            os.execute("export LANG=en_US.UTF-8; echo '" .. escape(subtext) .. "' | xclip -selection clipboard")
         elseif _G.platform == 'windows' then
             --windows copy taken from hsyong, github.com/mpv-player/mpv/issues/4695
             local escapedtext = string.gsub(mp.get_property("sub-text"), "'", "")
